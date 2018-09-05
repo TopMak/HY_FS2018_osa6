@@ -34,4 +34,6 @@ const reducer = (store = initialState, action) => {
   return store
 }
 
+//Actions
+
 export default reducer
