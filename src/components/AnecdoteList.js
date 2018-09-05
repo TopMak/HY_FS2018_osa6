@@ -4,7 +4,11 @@ import { voteAnecdoteNotification } from '../reducers/notificationReducer'
 
 class AnecdoteList extends React.Component {
   render() {
+    //const anecdotes = this.props.store.getState().anecdotes
+    const filterParams = this.props.store.getState().filter
     const anecdotes = this.props.store.getState().anecdotes
+      .filter(anecdote => anecdote.content.toLowerCase().includes(filterParams))
+
     return (
       <div>
         <h2>Anecdotes</h2>
