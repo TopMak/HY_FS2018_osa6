@@ -1,12 +1,13 @@
 import React from 'react'
 import { voteAnecdote } from '../reducers/anecdoteReducer'
 import { voteAnecdoteNotification } from '../reducers/notificationReducer'
+import { connect } from 'react-redux'
 
 class AnecdoteList extends React.Component {
   render() {
-    //const anecdotes = this.props.store.getState().anecdotes
-    const filterParams = this.props.store.getState().filter
-    const anecdotes = this.props.store.getState().anecdotes
+
+    const filterParams = this.props.filter
+    const anecdotes = this.props.anecdotes
       .filter(anecdote => anecdote.content.toLowerCase().includes(filterParams))
 
     return (
@@ -20,8 +21,8 @@ class AnecdoteList extends React.Component {
             <div>
               has {anecdote.votes}
               <button onClick={() => {
-                this.props.store.dispatch(voteAnecdote(anecdote.id))
-                this.props.store.dispatch(voteAnecdoteNotification(anecdote.content))
+                this.props.voteAnecdote(anecdote.id)
+                this.props.voteAnecdoteNotification(anecdote.content)
               }
               }>
                 vote
@@ -34,4 +35,16 @@ class AnecdoteList extends React.Component {
   }
 }
 
-export default AnecdoteList
+const mapStateToProps = (state) => {
+  return {
+    filter: state.filter,
+    anecdotes: state.anecdotes
+  }
+}
+
+// export default AnecdoteList
+
+export default connect(
+  mapStateToProps,
+  { voteAnecdote, voteAnecdoteNotification }
+)(AnecdoteList)
