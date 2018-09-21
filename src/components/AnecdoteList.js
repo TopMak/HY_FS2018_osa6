@@ -3,8 +3,6 @@ import { voteAnecdote } from '../reducers/anecdoteReducer'
 import { voteAnecdoteNotification } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
-import anecdoteService from '../services/anecdotes'
-
 class AnecdoteList extends React.Component {
 
   //TODO or think: remove voteAnecdote action,
@@ -20,10 +18,9 @@ class AnecdoteList extends React.Component {
             <div>
               has {anecdote.votes}
               <button onClick={async () => {
-                const votedAnecdote = await anecdoteService.voteAnecdote(anecdote)
-                // console.log(votedAnecdote)
-                this.props.voteAnecdote(anecdote.id)
-                this.props.voteAnecdoteNotification(votedAnecdote.content)
+                //async operations in action creators
+                this.props.voteAnecdote(anecdote)
+                this.props.voteAnecdoteNotification(anecdote.content)
               }
               }>vote</button>
             </div>

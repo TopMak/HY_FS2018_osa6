@@ -22,7 +22,7 @@ const anecdoteReducer = (store = [], action) => {
 
 //Action creators
 
-//REDUX-thunk
+//using REDUX-thunk
 export const initAnecdotes = () => {
   return async (dispatch) => {
     const anecdotes = await anecdoteService.getAll()
@@ -33,17 +33,25 @@ export const initAnecdotes = () => {
   }
 }
 
+//using REDUX-thunk
 export const createAnecdote = (anecdote) => {
-  return {
-    type: 'CREATE',
-    content: anecdote
+  return async (dispatch) => {
+    const newAnecdote = await anecdoteService.postAnecdote(anecdote)
+    dispatch({
+      type: 'CREATE',
+      content: newAnecdote
+    })
   }
 }
 
-export const voteAnecdote = (anecdoteID) => {
-  return {
-    type: 'VOTE',
-    id: anecdoteID
+//using REDUX-thunk
+export const voteAnecdote = (anecdote) => {
+  return async (dispatch) => {
+    const updatedAnecdote = await anecdoteService.voteAnecdote(anecdote)
+    dispatch({
+      type: 'VOTE',
+      id: updatedAnecdote.id
+    })
   }
 }
 
