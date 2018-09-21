@@ -1,6 +1,6 @@
 import React from 'react'
 import { createAnecdote } from '../reducers/anecdoteReducer'
-import { createAnecdoteNotification } from '../reducers/notificationReducer'
+import { timeoutNotify } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
 
@@ -14,7 +14,7 @@ class AnecdoteForm extends React.Component {
     // console.log(anecdoteContent);
     //async operations in action creators
     this.props.createAnecdote(anecdoteContent)
-    this.props.createAnecdoteNotification(anecdoteContent)
+    this.props.timeoutNotify(`Created new anecdote: '${anecdoteContent}'`, 5)
   }
 
   render() {
@@ -33,5 +33,5 @@ class AnecdoteForm extends React.Component {
 // export default AnecdoteForm
 export default connect(
   null,
-  { createAnecdote, createAnecdoteNotification }
+  { createAnecdote, timeoutNotify }
 )(AnecdoteForm)

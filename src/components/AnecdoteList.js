@@ -1,6 +1,6 @@
 import React from 'react'
 import { voteAnecdote } from '../reducers/anecdoteReducer'
-import { voteAnecdoteNotification } from '../reducers/notificationReducer'
+import { timeoutNotify } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
 class AnecdoteList extends React.Component {
@@ -20,7 +20,7 @@ class AnecdoteList extends React.Component {
               <button onClick={async () => {
                 //async operations in action creators
                 this.props.voteAnecdote(anecdote)
-                this.props.voteAnecdoteNotification(anecdote.content)
+                this.props.timeoutNotify(`You voted '${anecdote.content}'`, 5)
               }
               }>vote</button>
             </div>
@@ -49,5 +49,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  { voteAnecdote, voteAnecdoteNotification }
+  { voteAnecdote, timeoutNotify }
 )(AnecdoteList)

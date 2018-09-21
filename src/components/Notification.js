@@ -1,19 +1,10 @@
 import React from 'react'
-import { clearNotification } from '../reducers/notificationReducer'
+// import { clearNotification } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
 // class Notification extends React.Component {
 
 const Notification = (props) => {
-
-  //Notification "automatically resets" (no need to call every time notification is set)
-  // notificationTimeout(){
-  //   //clearTimeout(timerHandle)
-  //   setTimeout(() => {
-  //     console.log('timeout')
-  //     this.props.clearCurrentNotification()
-  //   }, 5000)
-  // }
 
   const style = {
     border: 'solid',
@@ -32,7 +23,6 @@ const Notification = (props) => {
     return (
       <div style={style}>
         {props.notification}
-        {props.clearCurrentNotification()}
       </div>
     )
 
@@ -46,19 +36,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    clearCurrentNotification: () => {
-      setTimeout(() => {
-        console.log('timeout')
-        dispatch(clearNotification())
-      }, 5000)
-    }
-  }
-}
-
 // export default Notification
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
+  // mapDispatchToProps
 )(Notification)

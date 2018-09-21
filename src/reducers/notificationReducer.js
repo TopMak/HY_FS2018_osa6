@@ -4,35 +4,35 @@ const initialState ='Test initial notification'
 const notificationReducer = (store = initialState, action) => {
   switch(action.type) {
 
-  case 'VOTE_ANECDOTE_NOTIF':{
-    // return state.concat(action.data)
-    return `Voted anecdote: ${action.content}`
-  }
-  case 'CREATE_ANECDOTE_NOTIF': {
-    return `Created new anecdote: ${action.content}`
+  case 'ANECDOTE_NOTIF_TIMEOUT': {
+    return action.content
   }
   case 'CLEAR_ANECDOTE_NOTIF': {
     return ''
   }
-
   default:
     return store
   }
 
 }
 
-//Action creators
-export const createAnecdoteNotification = (anecdote) => {
-  return {
-    type: 'CREATE_ANECDOTE_NOTIF',
-    content: anecdote
-  }
+//timeout helper
+function timeout(s) {
+  return new Promise(resolve => setTimeout(resolve, s*1000))
 }
 
-export const voteAnecdoteNotification = (anecdote) => {
-  return {
-    type: 'VOTE_ANECDOTE_NOTIF',
-    content: anecdote
+//Action creators
+
+export const timeoutNotify = (anecdote, timeoutSecs) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'ANECDOTE_NOTIF_TIMEOUT',
+      content: anecdote
+    })
+    await timeout(timeoutSecs)
+    dispatch({
+      type: 'CLEAR_ANECDOTE_NOTIF'
+    })
   }
 }
 
