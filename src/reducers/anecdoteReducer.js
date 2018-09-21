@@ -1,4 +1,5 @@
 
+import anecdoteService from '../services/anecdotes'
 
 const anecdoteReducer = (store = [], action) => {
   if (action.type === 'INIT') {
@@ -21,10 +22,14 @@ const anecdoteReducer = (store = [], action) => {
 
 //Action creators
 
-export const initAnecdotes = (anecdotes) => {
-  return {
-    type: 'INIT',
-    content: anecdotes
+//REDUX-thunk
+export const initAnecdotes = () => {
+  return async (dispatch) => {
+    const anecdotes = await anecdoteService.getAll()
+    dispatch({
+      type: 'INIT',
+      content: anecdotes
+    })
   }
 }
 

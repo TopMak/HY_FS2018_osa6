@@ -7,13 +7,10 @@ import Filter from './components/Filter'
 import { connect } from 'react-redux'
 import { initAnecdotes } from './reducers/anecdoteReducer'
 
-import anecdoteService from './services/anecdotes'
-
 class App extends React.Component {
 
-  componentDidMount = async () => {
-    const anecdotes = await anecdoteService.getAll()
-    this.props.initAnecdotes(anecdotes)
+  componentDidMount() {
+    this.props.initAnecdotes()
   }
 
   render() {
