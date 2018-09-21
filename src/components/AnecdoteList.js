@@ -3,7 +3,12 @@ import { voteAnecdote } from '../reducers/anecdoteReducer'
 import { voteAnecdoteNotification } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
 
+import anecdoteService from '../services/anecdotes'
+
 class AnecdoteList extends React.Component {
+
+  //TODO or think: remove voteAnecdote action,
+  //since voting is done via backend and result is returned as +1 already
 
   render() {
     return (
@@ -14,9 +19,11 @@ class AnecdoteList extends React.Component {
             {anecdote.content}
             <div>
               has {anecdote.votes}
-              <button onClick={() => {
+              <button onClick={async () => {
+                const votedAnecdote = await anecdoteService.voteAnecdote(anecdote)
+                // console.log(votedAnecdote)
                 this.props.voteAnecdote(anecdote.id)
-                this.props.voteAnecdoteNotification(anecdote.content)
+                this.props.voteAnecdoteNotification(votedAnecdote.content)
               }
               }>vote</button>
             </div>
