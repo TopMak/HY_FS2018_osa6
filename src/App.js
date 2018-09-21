@@ -6,6 +6,7 @@ import Filter from './components/Filter'
 
 import { connect } from 'react-redux'
 import { initAnecdotes } from './reducers/anecdoteReducer'
+
 import anecdoteService from './services/anecdotes'
 
 class App extends React.Component {
