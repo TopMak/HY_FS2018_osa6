@@ -6,6 +6,7 @@ import {
 
 import Menu from './components/Menu'
 import AnecdoteList from './components/AnecdoteList'
+import Anecdote from './components/Anecdote'
 import About from './components/About'
 import Footer from './components/Footer'
 import CreateNew from './components/CreateNew'
@@ -67,6 +68,9 @@ class App extends React.Component {
             <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
             <Route exact path="/about" render={() => <About />} />
             <Route exact path="/create" render={() => <CreateNew addNew={this.addNew}/>} />
+            <Route exact path="/anecdote/:id" render={({match}) =>
+              <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
+            />
           </div>
         </Router>
         <Footer />
