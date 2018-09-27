@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
 
 class CreateNew extends React.Component {
   constructor() {
@@ -23,6 +24,9 @@ class CreateNew extends React.Component {
       info: this.state.info,
       votes: 0
     })
+    //Submit and reroute to root page
+    this.props.notification(`Created a new anecdote: ${this.state.content}` )
+    this.props.history.push('/')
   }
 
   render() {

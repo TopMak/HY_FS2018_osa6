@@ -10,6 +10,7 @@ import Anecdote from './components/Anecdote'
 import About from './components/About'
 import Footer from './components/Footer'
 import CreateNew from './components/CreateNew'
+import Notification from './components/Notification'
 
 
 class App extends React.Component {
@@ -58,6 +59,11 @@ class App extends React.Component {
     this.setState({ anecdotes })
   }
 
+  setNotification = (notificationMsg) => {
+    console.log("notification to: ", notificationMsg)
+    this.setState({ notification: notificationMsg }, () => setTimeout(() => this.setState({ notification: '' }), 10000))
+  }
+
   render() {
     return (
       <div>
@@ -65,9 +71,10 @@ class App extends React.Component {
         <Router>
           <div>
             <Menu />
+            <Notification text={this.state.notification} />
             <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
             <Route exact path="/about" render={() => <About />} />
-            <Route exact path="/create" render={() => <CreateNew addNew={this.addNew}/>} />
+            <Route exact path="/create" render={({history}) => <CreateNew history={history} notification={this.setNotification} addNew={this.addNew}/>} />
             <Route exact path="/anecdote/:id" render={({match}) =>
               <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
             />
