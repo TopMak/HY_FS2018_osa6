@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   BrowserRouter as Router,
-  Route, Link, Redirect
+  Route
 } from 'react-router-dom'
 
 import Menu from './components/Menu'
@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import CreateNew from './components/CreateNew'
 import Notification from './components/Notification'
 
+import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
   constructor() {
@@ -66,7 +67,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h1>Software anecdotes</h1>
         <Router>
           <div>
@@ -81,7 +82,7 @@ class App extends React.Component {
           </div>
         </Router>
         <Footer />
-      </div>
+      </Container>
     );
   }
 }
