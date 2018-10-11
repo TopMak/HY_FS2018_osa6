@@ -10,8 +10,16 @@ const Notification = ({text}) => {
     )
   }
   else {
+    const successStyle = {
+      fontWeight: 'bold',
+      margin: '10px',
+      backgroundColor: '#b5e7a0',
+      padding: '5px',
+      border: '5px none green',
+      borderLeftStyle: 'solid'
+    }
     return (
-      <div>
+      <div style={successStyle} >
         {text}
       </div>
     )
