@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Grid, Image } from 'semantic-ui-react'
+import { Card, Grid, Image } from 'semantic-ui-react'
 
 const About = () => (
   <div>
@@ -16,7 +16,16 @@ const About = () => (
       <p>Software engineering is full of excellent anecdotes, at this app you can find the best and add more.</p>
       </Grid.Column>
       <Grid.Column>
-      <Image size='small' src='http://www.turingarchive.org/images/noflash/a36/a36.insidephoto.jpg' />
+       <Card>
+        <Image src='https://upload.wikimedia.org/wikipedia/commons/7/79/Alan_Turing_az_1930-as_%C3%A9vekben.jpg' />
+        <Card.Content>
+          <Card.Header>Alan Turing</Card.Header>
+          <Card.Meta>
+            <span className='date'>23 June 1912 - 7 June 1954 (aged 41)</span>
+          </Card.Meta>
+          <Card.Description>Turing is widely considered to be the father of theoretical computer science and artificial intelligence.</Card.Description>
+        </Card.Content>
+        </Card>
       </Grid.Column>
     </Grid.Row>
   </Grid>

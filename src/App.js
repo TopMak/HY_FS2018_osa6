@@ -4,7 +4,7 @@ import {
   Route
 } from 'react-router-dom'
 
-import Menu from './components/Menu'
+import NavMenu from './components/Menu'
 import AnecdoteList from './components/AnecdoteList'
 import Anecdote from './components/Anecdote'
 import About from './components/About'
@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 import CreateNew from './components/CreateNew'
 import Notification from './components/Notification'
 
-import { Container } from 'semantic-ui-react'
+import { Container, Divider } from 'semantic-ui-react'
 
 class App extends React.Component {
   constructor() {
@@ -71,7 +71,7 @@ class App extends React.Component {
         <h1>Software anecdotes</h1>
         <Router>
           <div>
-            <Menu />
+            <NavMenu />
             <Notification text={this.state.notification} />
             <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
             <Route exact path="/about" render={() => <About />} />
@@ -81,6 +81,7 @@ class App extends React.Component {
             />
           </div>
         </Router>
+        <Divider />
         <Footer />
       </Container>
     );
