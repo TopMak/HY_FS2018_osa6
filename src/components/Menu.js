@@ -1,10 +1,20 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 const Menu = () => {
 
   const linkButton = {
+    backgroundColor: '#dac292',
+    color: '#3e4444',
+    padding: '14px 25px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+  }
+
+  const linkButtonActive = {
+    fontSize: '1.2em',
     backgroundColor: '#dac292',
     color: '#3e4444',
     padding: '14px 25px',
@@ -24,9 +34,9 @@ const Menu = () => {
 
   return (
     <div style={menuStyle}>
-      <Link style={linkButton} to="/">anecdotes</Link>&nbsp;
-      <Link style={linkButton} to="/create">create new</Link> &nbsp;
-      <Link style={linkButton} to="/about">about</Link> &nbsp;
+      <NavLink activeStyle={linkButtonActive} style={linkButton} exact to="/">anecdotes</NavLink>&nbsp;
+      <NavLink activeStyle={linkButtonActive} style={linkButton} exact to="/create">create new</NavLink> &nbsp;
+      <NavLink activeStyle={linkButtonActive} style={linkButton} exact to="/about">about</NavLink> &nbsp;
     </div>
   )
 }
