@@ -9,10 +9,12 @@ Completes tasks 6.1-6.15.
 ### For testing the app::
 
 start mockup backend (json-server) by command:
-npm run server
+
+`npm run server`
 
 start frontend server by command:
-npm run start
+
+`npm run start`
 
 
 ### Note!
